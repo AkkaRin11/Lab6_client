@@ -5,7 +5,7 @@ import org.example.controller.ObjectController;
 import org.example.model.LabWork;
 
 public class Add extends Command{
-    public final ObjectController objectController;
+    private final ObjectController objectController;
 
     public Add(){
         objectController = new ObjectController();
@@ -21,6 +21,6 @@ public class Add extends Command{
 
         LabWork labWork = objectController.getLabWorkObj();
 
-        return new CommandRequest(name, argsToSting(args), labWork);
+        return new CommandRequest(name, args, labWork);
     }
 }

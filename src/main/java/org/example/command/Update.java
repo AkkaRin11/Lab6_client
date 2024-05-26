@@ -21,6 +21,6 @@ public class Update extends Command{
 
         LabWork labWork = objectController.getLabWorkObj();
 
-        return new CommandRequest(name, argsToSting(args), labWork);
+        return new CommandRequest(name, args, labWork);
     }
 }

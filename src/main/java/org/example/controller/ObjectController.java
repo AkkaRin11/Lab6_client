@@ -160,6 +160,20 @@ public class ObjectController {
             personDto.setBirthday(date);
         }
 
+        while (personDto.getHeight() == -1) {
+            Long a = consoleController.readLong("height", "число должно быть больше 0");
+
+            if (a == null){
+                return null;
+            }
+
+            if (a > 0) {
+                personDto.setHeight(a);
+            } else {
+                consoleController.println("y может быть только целым числом больше 0");
+            }
+        }
+
         personDto.setHairColor(consoleController.readEnum(Color.class));
 
         personDto.setNationality(consoleController.readEnum(Country.class));

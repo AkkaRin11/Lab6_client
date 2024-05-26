@@ -15,14 +15,4 @@ public abstract class Command implements Buildable{
 
         return true;
     }
-
-    public String argsToSting(String... args){
-        String commandStringArgument = "";
-
-        for (String string: args){
-            commandStringArgument += string + " ";
-        }
-
-        return commandStringArgument;
-    }
 }

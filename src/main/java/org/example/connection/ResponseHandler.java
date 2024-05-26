@@ -10,9 +10,9 @@ public class ResponseHandler {
         String output = "";
 
         output = switch (response.getStatusCode()) {
-            case _200_SUCCESS_ -> "Успешно: " + response.getMessage();
-            case _400_CLIENT_ERROR -> "Ошибка: " + response.getMessage();
-            case _500_SERVER_ERROR -> "Ошибка сервера: " + response.getMessage();
+            case _200_SUCCESS_ -> "Успешно:\n" + response.getMessage();
+            case _400_CLIENT_ERROR -> "Ошибка:\n" + response.getMessage();
+            case _500_SERVER_ERROR -> "Ошибка сервера:\n" + response.getMessage();
         };
 
         return output.trim();

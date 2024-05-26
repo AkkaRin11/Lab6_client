@@ -19,6 +19,6 @@ public class Info extends Command{
             return null;
         }
 
-        return new CommandRequest(name, argsToSting(args));
+        return new CommandRequest(name, args);
     }
 }
