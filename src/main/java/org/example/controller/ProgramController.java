@@ -5,6 +5,7 @@ import org.example.connection.ResponseHandler;
 import org.example.connection.Sender;
 import org.example.connection.TCPClient;
 import org.example.exception.ClosureFailedException;
+import org.example.exception.NonWorkingServerException;
 
 import java.io.IOException;
 import java.net.SocketException;
@@ -23,7 +24,7 @@ public class ProgramController {
     private final ResponseHandler responseHandler;
 
     private static final String SERVER_ADDRESS = "127.0.0.1";
-    private static final int SERVER_PORT = 8080;
+    private static final int SERVER_PORT = 2000;
 
     public ProgramController() {
         commandController = new CommandController();
@@ -34,13 +35,14 @@ public class ProgramController {
         responseHandler = new ResponseHandler();
     }
 
-    public void run() {
+    public void run() throws NonWorkingServerException{
 
         try {
             tcpClient.run();
         } catch (IOException e) {
-            consoleController.println("Сервер не запущен");
-            System.exit(1);
+//            consoleController.println("Сервер не запущен");
+//            System.exit(1);
+            throw new NonWorkingServerException();
         }
 
         consoleController.println("Программа запущена\nДля получения списка команд напишите: help");
@@ -104,12 +106,13 @@ public class ProgramController {
                     try {
                         consoleController.println(responseHandler.handleResponse(sender.sendRequest(commandRequest)));
                     } catch (SocketException e){
-                        consoleController.println("Сервер не запущен");
+//                        consoleController.println("Сервер не запущен");
+                        throw new NonWorkingServerException();
                     }
 
 
                 } else {
-                    consoleController.println("Неверное количество аргументов");
+                    consoleController.println("Неверное количество аргументов или используемые файлы недоступны");
                 }
 
                 consoleController.print("> ");

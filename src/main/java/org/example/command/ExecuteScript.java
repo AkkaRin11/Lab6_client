@@ -24,6 +24,10 @@ public class ExecuteScript extends Command{
         List<String> commands = new ArrayList<>();
         readFile(args[0], commands);
 
+        if (commands.isEmpty()){
+            return null;
+        }
+
         return new CommandRequest(name, args, (Serializable) commands);
     }
 
