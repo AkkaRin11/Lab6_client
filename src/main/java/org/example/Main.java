@@ -9,15 +9,15 @@ import java.util.TreeMap;
 public class Main {
     public static void main(String[] args) {
         start();
+        System.out.print("Если хотите попробовать подключиться ещё раз, напишите что-нибудь\n> ");
 
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNext()){
-            System.out.print("Если хотите попробовать подключиться ещё раз, напишите что-нибудь\n> ");
-
             scanner.nextLine();
 
             start();
+            System.out.print("Если хотите попробовать подключиться ещё раз, напишите что-нибудь\n> ");
         }
 
     }

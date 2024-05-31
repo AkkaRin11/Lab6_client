@@ -35,6 +35,7 @@ public class CommandController {
         commands.put("remove_greater", new RemoveGreater());
         commands.put("show", new Show());
         commands.put("sum_of_average_point", new SumOfAveragePoint());
+        commands.put("save", new Save());
     }
 
     public CommandRequest buildCommand(String commandName, String... args) {

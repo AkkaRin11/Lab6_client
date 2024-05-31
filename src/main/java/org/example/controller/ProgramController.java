@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.Dto.CommandRequest;
+import org.example.Dto.Response;
 import org.example.connection.ResponseHandler;
 import org.example.connection.Sender;
 import org.example.connection.TCPClient;
@@ -103,12 +104,16 @@ public class ProgramController {
 
                 if (commandRequest != null){
 
-                    try {
-                        consoleController.println(responseHandler.handleResponse(sender.sendRequest(commandRequest)));
+                    Response response;
+
+                    try{
+                        response = sender.sendRequest(commandRequest);
                     } catch (SocketException e){
 //                        consoleController.println("Сервер не запущен");
                         throw new NonWorkingServerException();
                     }
+
+                    consoleController.println(responseHandler.handleResponse(response));
 
 
                 } else {
@@ -118,13 +123,14 @@ public class ProgramController {
                 consoleController.print("> ");
             }
         } catch (Exception e) {
-            consoleController.println("Произошла ошибка: " + e.getMessage());
-            try {
-                tcpClient.close();
-            } catch (ClosureFailedException exception){
-                consoleController.print("При завершении соединения произошла ошибка");
-            }
-            System.exit(1);
+            consoleController.println("Произошла ошибка сервера: " + e.getMessage());
+            throw new NonWorkingServerException();
+//            try {
+//                tcpClient.close();
+//            } catch (ClosureFailedException exception){
+//                consoleController.print("При завершении соединения произошла ошибка");
+//            }
+//            System.exit(1);
         }
     }
 }
